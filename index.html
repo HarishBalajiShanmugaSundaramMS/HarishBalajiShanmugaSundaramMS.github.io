@@ -1,11 +1,163 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <title>Design With Persona</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdn.neo4jlabs.com/neovis.js/v1.4.0/neovis.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/popoto/dist/popoto.min.css">
+    <script src="https://unpkg.com/popoto"></script>
+    <script src="https://unpkg.com/popoto/dist/popoto.js"></script>
+
+
 </head>
+<script>
+    function draw() {
+        var config = {
+            container_id: "viz",
+            server_url: "bolt://64.225.61.35:7687",
+            server_user: "harish",
+            server_password: "Fit@123",
+            labels: {
+                Main: { caption: "name", size: 5500 },
+                Personify: { caption: "section", size: 2000, community: "section" },
+                Guideline: { caption: "name", size: 1800 },
+                Accessibility: { caption: "name", size: 1600, community: "type" },
+                Principles: { caption: "name", size: 1400 },
+                Principles_UAAG: { caption: "name", size: 1400 },
+                Perceivable_UAAG: { caption: "name", size: 1200 },
+                UAAG_20_11: { caption: "type", size: 800 },
 
-<body bgcolor="#E3DBDB">
-	<h1>HarishBalaji ShanmugaSundaram</h1>
+                Persona: { caption: "name", size: 1200, title_properties: ["name","ID"] },
+                AgeGroup: { caption: "value" },
+                Perceivable: { caption: "name" },
+                Adaptable: { caption: "name" },
+                VisualAccessibility: { caption: "name" },
+                Robust: { caption: "name" },
+                Understandable: { caption: "name" },
+                Operable: { caption: "name"},
+                Readable: { caption: "name" },
+                Navigable: { caption: "name" },
+                Predictable: { caption: "name" },
+                Enough_Time: { caption: "name" },
+                Country: { caption: "name" },
+                MotorAccessibility: { caption: "name" },
+                Devices: { caption: "name" },
+                Profession: { caption: "name" },
+                Distinguishable: { caption: "name" },
+                SpeechAccessibility: { caption: "name" },
+                Brands: { caption: "name" },
+                Keywords: { caption: "name" },
+                Gender: { caption: "name" },
+                Input_Modalities: { caption: "name" },
+                ColorBlindness: { caption: "name", title_properties:["name","description"] },
+                AuditoryAccessibility: { caption: "name" },
+                Seizures_Physical_Reactions: { caption: "name" },
+                CognitiveAccessibility: { caption: "name" },
+                Time_Based_Media: { caption: "name" },
+                Input_Assistance: { caption: "name" },
+                Keyboard_Accessible: { caption: "name" },
+            },
+            relationships: {
+                DIVISION: { caption: false, thickness: "1" },
+                IS_FROM: { caption: false, thickness: "1" },
+                IS_BY_PROFESSION: { caption: false, thickness: "1" },
+                GENDER: { caption: false, thickness: "1" },
+                FAVOURITE: { caption: false, thickness: "1" },
+                KEYWORD: { caption: false, thickness: "1" },
+                HAS_ACCESSIBILITY: { caption: false, thickness: "1" },
+                SUB_DIVISION: { caption: false, thickness: "1" },
+                FOLLOW_THIS_GUIDELINE: { caption: false, thickness: "1" },
+                AGE_GROUP: { caption: false, thickness: "1" },
+                MAY_HAVE: { caption: false, thickness: "1" },
+                DEVICES_IN_USE: { caption: false, thickness: "1" },
+                EXAMPLE: { caption: false, thickness: "1" },
+                PRINCIPLE: { caption: false, thickness: "1" },
+                LIBRARY: { caption: false, thickness: "1" },
+                TYPE: { caption: false, thickness: "1" },
+                FEATURE: { caption: false, thickness: "1" }
 
-	</body></html>
+            },
+            arrows: false,
+            hierarchical: false,
+            hierarchical_sort_method: "directed",
+            trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
+            initial_cypher: document.getElementById("query").value
+        };
+        var viz = new NeoVis.default(config);
+        viz.render();
+    }
+</script>
+
+<body onload="draw()">
+    <form>
+
+        <div id="keywords">
+            <label for="keywordsearch">Keyword Search</label>
+            <br />
+            <input type="search" id="keywordsearch" />
+        </div>
+
+        <div id="guidelines">
+            <input type="checkbox" id="guideline01" name="guideline01" value="WCAG 2.1" />
+            <label for="guideline01">WCAG 2.1</label>
+            <input type="checkbox" id="guideline02" name="guideline02" value="WAI-ARIA" />
+            <label for="guideline02">WAI-ARIA</label>
+        </div>
+
+        <div id="accessibility">
+            <input type="checkbox" id="auditory" name="auditory" value="auditory" />
+            <label for="auditory">Auditory</label>
+            <input type="checkbox" id="visual" name="visual" value="visual" />
+            <label for="visual">Visual</label>
+            <input type="checkbox" id="speech" name="speech" value="speech" />
+            <label for="speech">Speech</label>
+            <input type="checkbox" id="motor" name="motor" value="motor" />
+            <label for="motor">Motor</label>
+            <input type="checkbox" id="cognitive" name="cognitive" value="cognitive" />
+            <label for="cognitive">Cognitive</label>
+        </div>
+
+        <fieldset>
+            <legend>Disability</legend>
+
+            <div id="disability">
+                <label for="cars">Disability</label><br />
+                <select id="cars" name="cars" size="10" multiple>
+                    <option value="autism">Autism</option>
+                    <option value="dyslexia">Dyslexia</option>
+                    <option value="dyspraxia">Dyspraxia</option>
+                    <option value="dyscalculia">Dyscalculia</option>
+                </select><br /><br />
+            </div>
+        </fieldset>
+
+        <input type="submit" class="btn btn-success" />
+        <input type="reset" class="btn btn-danger" />
+        <a href="graph.html">Click</a>
+        <input type="text" id="query"
+            value="MATCH (n:Guideline)-[r:PRINCIPLE]->(m)-[q:DIVISION]->(o) where m.name='Perceivable' RETURN n,r,m,q,o;">
+        <br>
+        <button name='showCompleteGraph' id="showCompleteGraph">Show Complete Graph</button> <br>
+        <button name='showAllPersonas' id="showAllPersonas">Show All Personas</button> <br>
+        <button name='showAllAccessibilities' id="showAllAccessibilities">Show All Accessibilities</button> <br>
+        <div id="viz"></div>
+
+
+    </form>
+</body>
+
+</html>
